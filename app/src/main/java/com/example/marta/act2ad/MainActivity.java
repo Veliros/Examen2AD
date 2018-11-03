@@ -1,6 +1,7 @@
 package com.example.marta.act2ad;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.example.marta.act2ad.ConexionesBD.ConexionSQLiteHelper;
 
 /**
  * ACTIVIDAD 3a
@@ -28,6 +31,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ConexionSQLiteHelper con = new ConexionSQLiteHelper(this, "usuarios",null, 1);
 
         final Button btnGuardar = (Button) findViewById(R.id.guardar);
 
@@ -93,6 +98,17 @@ public class MainActivity extends Activity {
 
             }
         });
+
+        final Button btnEjerB = (Button) findViewById(R.id.btnEjerB);
+
+        btnEjerB.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), EjercicioB.class);
+                startActivity(i);
+
+            }
+        });
+
     }
 
     /**
