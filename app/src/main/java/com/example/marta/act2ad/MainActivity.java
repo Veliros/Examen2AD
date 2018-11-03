@@ -109,6 +109,16 @@ public class MainActivity extends Activity {
             }
         });
 
+        final Button btnEjerC = (Button) findViewById(R.id.btnActC);
+
+        btnEjerC.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), EjercicioC.class);
+                startActivity(i);
+
+            }
+        });
+
     }
 
     /**

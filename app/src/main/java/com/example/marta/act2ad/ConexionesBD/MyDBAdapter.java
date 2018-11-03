@@ -2,10 +2,13 @@ package com.example.marta.act2ad.ConexionesBD;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import com.example.marta.act2ad.ConexionesBD.ConexionSQLiteHelper;
+
+import java.util.ArrayList;
 
 /**
  * @author marta
@@ -107,4 +110,69 @@ public class MyDBAdapter {
         newValues.put(NOTA, notaEst);
         db.insert(DATABASE_TABLE_EST, null, newValues);
     }
+
+
+    /**
+     *
+     * @return estudiantes
+     */
+    public ArrayList<String> recuperarEst(){
+        ArrayList<String> estudiantes = new ArrayList<String>();
+        //Recuperamos en un cursor la consulta realizada
+        Cursor cursor = db.query(DATABASE_TABLE_EST,null,null,null,null,null,null);
+        //Recorremos el cursor
+        if (cursor != null && cursor.moveToFirst()){
+            do{
+                estudiantes.add(cursor.getString(1)+" "+cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+        return estudiantes;
+    }
+
+    /**
+     *
+     * @return profes
+     */
+    public ArrayList<String> recuperarProf(){
+        ArrayList<String> profes = new ArrayList<String>();
+        //Recuperamos en un cursor la consulta realizada
+        Cursor cursor = db.query(DATABASE_TABLE_PROF,null,null,null,null,
+                null,null);
+        //Recorremos el cursor
+        if (cursor != null && cursor.moveToFirst()){
+            do{
+                profes.add(cursor.getString(1)+" "+cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+        return profes;
+    }
+
+    public ArrayList<String> recuperarCiclo(){
+        ArrayList<String> estudiantes = new ArrayList<String>();
+        //Recuperamos en un cursor la consulta realizada
+        Cursor cursor = db.query(DATABASE_TABLE_EST,null,null,null,
+                "ciclo",null,null);
+        //Recorremos el cursor
+        if (cursor != null && cursor.moveToFirst()){
+            do{
+                estudiantes.add(cursor.getString(1)+" "+cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+        return estudiantes;
+    }
+
+    public ArrayList<String> recuperarCurso(){
+        ArrayList<String> estudiantes = new ArrayList<String>();
+        //Recuperamos en un cursor la consulta realizada
+        Cursor cursor = db.query(DATABASE_TABLE_EST,null,null,null,
+                "curso",null,null);
+        //Recorremos el cursor
+        if (cursor != null && cursor.moveToFirst()){
+            do{
+                estudiantes.add(cursor.getString(1)+" "+cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+        return estudiantes;
+    }
+
 }
